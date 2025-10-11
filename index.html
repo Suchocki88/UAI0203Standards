@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2.3 Standards Alignment - Understanding AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        .header .lesson-info {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .intro {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+            margin-bottom: 30px;
+        }
+
+        .standards-selector {
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .standards-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .standards-selector select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .standards-selector select:hover {
+            border-color: #764ba2;
+        }
+
+        .standards-selector select:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+        }
+
+        .standards-content {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .standards-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .standard-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #667eea;
+        }
+
+        .standard-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .standard-section h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .standard-item {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 3px solid #9c27b0;
+        }
+
+        .standard-code {
+            font-weight: 600;
+            color: #764ba2;
+            font-family: 'Courier New', monospace;
+        }
+
+        .standard-description {
+            margin-top: 8px;
+            color: #555;
+        }
+
+        .alignment-note {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ff9800;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .lesson-mapping {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .lesson-mapping strong {
+            color: #2e7d32;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            background: #764ba2;
+        }
+
+        @media print {
+            .print-button, .standards-selector {
+                display: none;
+            }
+            .standards-content {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>State Standards Alignment</h1>
+            <div class="subtitle">Understanding AI: A Conceptual Approach</div>
+            <div class="lesson-info">Chapter 2, Lesson 2.3: The Knock-Knock Joke Journey - Part 1</div>
+        </div>
+
+        <button class="print-button" onclick="window.print()">🖨️ Print Standards</button>
+
+        <div class="content">
+            <div class="intro">
+                <p><strong>Lesson 2.3</strong> is a Lab Day where students conduct systematic experiments observing AI learning progression through six stages. This hands-on investigation aligns with multiple state and national standards frameworks through scientific practices, data collection, systematic observation, and collaborative inquiry.</p>
+            </div>
+
+            <div class="standards-selector">
+                <label for="standards-select">Select Standards Framework:</label>
+                <select id="standards-select" onchange="showStandards(this.value)">
+                    <option value="">-- Choose State Standards --</option>
+                    <option value="texas">Texas (TEKS)</option>
+                    <option value="california">California</option>
+                    <option value="florida">Florida</option>
+                    <option value="newyork">New York</option>
+                    <option value="pennsylvania">Pennsylvania</option>
+                    <option value="illinois">Illinois</option>
+                    <option value="ohio">Ohio</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="northcarolina">North Carolina</option>
+                    <option value="michigan">Michigan</option>
+                    <option value="virginia">Virginia</option>
+                    <option value="washington">Washington</option>
+                    <option value="mississippi">Mississippi</option>
+                    <option value="ccss">Common Core State Standards (CCSS) - ELA</option>
+                    <option value="ngss">Next Generation Science Standards (NGSS)</option>
+                    <option value="iste">ISTE Standards for Students</option>
+                    <option value="csta">CSTA K-12 Computer Science Standards</option>
+                    <option value="c3">C3 Framework for Social Studies</option>
+                </select>
+            </div>
+
+            <!-- Common Core Standards -->
+            <div id="ccss" class="standards-content">
+                <div class="standard-section">
+                    <h2>Common Core State Standards - English Language Arts</h2>
+                    
+                    <div class="alignment-note">
+                        Lesson 2.3 emphasizes systematic documentation, observational writing, and collaborative investigation—core ELA skills applied to understanding technological systems.
+                    </div>
+
+                    <h3>Writing Standards (Grades 9-10)</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.2</div>
+                        <div class="standard-description">Write informative/explanatory texts to examine and convey complex ideas, concepts, and information clearly and accurately through the effective selection, organization, and analysis of content.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation requires students to clearly record observations, organize findings by learning stage, and explain patterns they notice in AI output progression.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.2.A</div>
+                        <div class="standard-description">Introduce a topic; organize complex ideas, concepts, and information to make important connections and distinctions.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students organize observations across six distinct stages, making connections between stages and distinguishing how each stage differs from previous ones.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.2.B</div>
+                        <div class="standard-description">Develop the topic with well-chosen, relevant, and sufficient facts, extended definitions, concrete details, quotations, or other information and examples appropriate to the audience's knowledge of the topic.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Documentation protocol requires specific examples of AI output at each stage, concrete details about observed patterns, and sufficient evidence to support claims about progression.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.7</div>
+                        <div class="standard-description">Conduct short as well as more sustained research projects to answer a question or solve a problem; narrow or broaden the inquiry when appropriate; synthesize multiple sources on the subject, demonstrating understanding of the subject under investigation.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> The lab constitutes a sustained research project investigating "How does AI learn?" Students systematically gather data across multiple experimental trials, synthesizing observations to understand learning progression.</div>
+                    </div>
+
+                    <h3>Speaking and Listening Standards (Grades 9-10)</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">CCSS.ELA-LITERACY.SL.9-10.1</div>
+                        <div class="standard-description">Initiate and participate effectively in a range of collaborative discussions with diverse partners, building on others' ideas and expressing their own clearly and persuasively.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Team-based experimentation requires continuous collaboration as students compare observations, discuss patterns, and build shared understanding of AI learning progression.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">CCSS.ELA-LITERACY.SL.9-10.1.C</div>
+                        <div class="standard-description">Propel conversations by posing and responding to questions that relate the current discussion to broader themes or larger ideas.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> As students observe outputs, they naturally pose questions connecting specific observations to broader concepts about AI learning, pattern recognition, and machine intelligence.</div>
+                    </div>
+
+                    <h3>Reading Standards for Informational Text (Grades 9-10)</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">CCSS.ELA-LITERACY.RI.9-10.7</div>
+                        <div class="standard-description">Analyze various accounts of a subject told in different mediums, determining which details are emphasized in each account.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students analyze AI outputs across six different "accounts" (stages) of the same task, determining which capabilities are emphasized at each learning stage.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NGSS Standards -->
+            <div id="ngss" class="standards-content">
+                <div class="standard-section">
+                    <h2>Next Generation Science Standards (NGSS)</h2>
+                    
+                    <div class="alignment-note">
+                        Lesson 2.3 is fundamentally a scientific investigation, emphasizing authentic science and engineering practices including systematic observation, data collection, pattern analysis, and evidence-based reasoning.
+                    </div>
+
+                    <h3>Science and Engineering Practices</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">Practice 1: Asking Questions and Defining Problems</div>
+                        <div class="standard-description">Ask questions that arise from examining models or a theory to clarify relationships.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> As students observe each stage, they formulate questions about why outputs look the way they do, what's changing between stages, and how the learning process works.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">Practice 3: Planning and Carrying Out Investigations</div>
+                        <div class="standard-description">Plan and conduct an investigation individually and collaboratively to produce data to serve as the basis for evidence.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students follow experimental protocol to systematically investigate AI learning across six stages, collecting data (output examples) that will serve as evidence for tomorrow's analytical discussion.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">Practice 4: Analyzing and Interpreting Data</div>
+                        <div class="standard-description">Analyze data using tools, technologies, and/or models to make valid and reliable scientific claims.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students analyze AI output data across stages, identifying patterns in capability progression and making claims about what changes at each stage.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">Practice 5: Using Mathematics and Computational Thinking</div>
+                        <div class="standard-description">Use mathematical and/or algorithmic representations of phenomena or design solutions to describe relationships.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe computational systems (AI) in action, documenting how algorithmic learning processes produce increasingly sophisticated outputs over time.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">Practice 8: Obtaining, Evaluating, and Communicating Information</div>
+                        <div class="standard-description">Critically read scientific literature to determine the central ideas and obtain scientific information to describe patterns in the natural world.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students obtain information through direct experimentation, evaluate AI outputs for patterns and quality, and communicate findings through field journal documentation.</div>
+                    </div>
+
+                    <h3>Crosscutting Concepts</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">Patterns</div>
+                        <div class="standard-description">Different patterns may be observed at each of the scales at which a system is studied and can provide evidence for causality in explanations of phenomena.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe patterns at multiple scales: letter frequency patterns (Stage 2), word patterns (Stage 3), structural patterns (Stage 5-6), and meta-patterns in how learning itself progresses.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">Systems and System Models</div>
+                        <div class="standard-description">Models can be used to predict the behavior of a system.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students develop mental models of AI learning systems by observing how inputs (prompts) produce systematically different outputs depending on learning stage.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">Stability and Change</div>
+                        <div class="standard-description">Change and rates of change can be quantified and modeled over very short or very long periods of time.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students document how AI capabilities change across learning stages, observing both gradual improvements (Stage 1→2→3) and more dramatic leaps (Stage 4→5).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISTE Standards -->
+            <div id="iste" class="standards-content">
+                <div class="standard-section">
+                    <h2>ISTE Standards for Students</h2>
+                    
+                    <div class="alignment-note">
+                        Lesson 2.3 develops hands-on experience with AI systems through systematic experimentation, building both technical understanding and critical evaluation skills.
+                    </div>
+
+                    <h3>1. Empowered Learner</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">1b. Build networks and customize learning environments</div>
+                        <div class="standard-description">Students build networks and customize their learning environments in ways that support the learning process.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students actively experiment with Alia's learning stages, customizing prompts within the experimental framework to explore AI capabilities at their own pace.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">1d. Understand fundamental concepts of technology operations</div>
+                        <div class="standard-description">Students understand the fundamental concepts of technology operations, demonstrate the ability to choose, use and troubleshoot current technologies.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Through direct experimentation, students develop understanding of how AI systems operate—specifically how training affects capability development.</div>
+                    </div>
+
+                    <h3>3. Knowledge Constructor</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">3a. Plan and employ effective research strategies</div>
+                        <div class="standard-description">Students plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students follow systematic research protocol (experimental stages, documentation methods) to gather information about AI learning through controlled investigation.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3c. Curate information from digital resources</div>
+                        <div class="standard-description">Students curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation requires students to curate AI outputs across six stages, organizing evidence that demonstrates progression and making connections between stages.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3d. Build knowledge by actively exploring real-world issues</div>
+                        <div class="standard-description">Students build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students actively explore the real-world phenomenon of machine learning through hands-on experimentation, developing theories about how AI learns that will be tested in subsequent discussions.</div>
+                    </div>
+
+                    <h3>4. Innovative Designer</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">4a. Know and use a deliberate design process</div>
+                        <div class="standard-description">Students know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students use deliberate experimental design (standardized prompts, systematic documentation, controlled progression) to test theories about AI learning.</div>
+                    </div>
+
+                    <h3>5. Computational Thinker</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">5b. Collect data or identify relevant data sets</div>
+                        <div class="standard-description">Students collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students systematically collect data (AI outputs at each learning stage), document patterns, and organize findings in field journals to support analysis.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">5c. Break problems into component parts</div>
+                        <div class="standard-description">Students break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students break the complex process of "AI learning" into six observable stages, examining each component separately to understand the system as a whole.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">5d. Understand how automation works</div>
+                        <div class="standard-description">Students understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe automated learning processes in action, developing understanding of how algorithms improve through pattern recognition without explicit programming.</div>
+                    </div>
+
+                    <h3>7. Global Collaborator</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">7c. Contribute constructively to project teams</div>
+                        <div class="standard-description">Students contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Team-based lab work requires students to collaborate on experiments, share observations, compare findings, and work toward shared understanding of AI learning.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CSTA Standards -->
+            <div id="csta" class="standards-content">
+                <div class="standard-section">
+                    <h2>CSTA K-12 Computer Science Standards</h2>
+                    
+                    <div class="alignment-note">
+                        Lesson 2.3 provides direct, hands-on experience with machine learning systems—a core computer science concept increasingly central to modern computing.
+                    </div>
+
+                    <h3>Algorithms and Programming</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">3B-AP-08</div>
+                        <div class="standard-description">Describe how artificial intelligence drives many software and physical systems.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students directly observe how AI systems develop capabilities through learning, gaining concrete understanding of the fundamental process that drives all AI applications.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3A-AP-17</div>
+                        <div class="standard-description">Decompose problems into smaller components through systematic analysis.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students decompose "learning to generate jokes" into six observable stages, analyzing each component of the learning process separately.</div>
+                    </div>
+
+                    <h3>Data and Analysis</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">3A-DA-11</div>
+                        <div class="standard-description">Create interactive data visualizations using software tools to help others better understand real-world phenomena.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation creates visual records (documented outputs organized by stage) that help students understand the phenomenon of AI learning progression.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3A-DA-12</div>
+                        <div class="standard-description">Create computational models that represent the relationships among different elements of data collected from a phenomenon or process.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students develop mental models showing relationships between training stage, pattern recognition capability, and output quality—all based on collected data.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3B-DA-05</div>
+                        <div class="standard-description">Use data analysis tools and techniques to identify patterns in data representing complex systems.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students use systematic observation (their "tool") to identify patterns in AI output data, analyzing how the complex system of machine learning produces progressive improvement.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3B-DA-06</div>
+                        <div class="standard-description">Select data collection tools and techniques to generate data sets that support a claim or communicate information.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students select specific documentation techniques (recording sample outputs, noting patterns, comparing stages) to generate data sets supporting claims about learning progression.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3B-DA-07</div>
+                        <div class="standard-description">Evaluate the ability of models and simulations to test and support the refinement of hypotheses.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe AI models at different learning stages, evaluating how each stage's capabilities support or challenge hypotheses about how learning progresses.</div>
+                    </div>
+
+                    <h3>Impacts of Computing</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">3A-IC-24</div>
+                        <div class="standard-description">Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> By understanding how AI learns (and what it can/cannot do at each stage), students gain foundation for evaluating whether AI is ready for various real-world applications.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">3B-IC-27</div>
+                        <div class="standard-description">Predict how computational innovations that have revolutionized aspects of our culture might evolve.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Understanding learning progression helps students predict how AI capabilities might evolve: what comes after mastering simple jokes? What other tasks might follow similar learning trajectories?</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C3 Framework -->
+            <div id="c3" class="standards-content">
+                <div class="standard-section">
+                    <h2>C3 Framework for Social Studies State Standards</h2>
+                    
+                    <div class="alignment-note">
+                        Lesson 2.3's systematic investigation methodology aligns with C3's inquiry arc, particularly in developing questions, gathering evidence through investigation, and preparing for evidence-based communication.
+                    </div>
+
+                    <h3>Dimension 1: Developing Questions and Planning Inquiries</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">D1.1.9-12</div>
+                        <div class="standard-description">Explain how a question represents key ideas in the field.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> The driving question "How does AI learn?" represents key ideas in computer science, technology literacy, and understanding of automated systems increasingly central to social studies.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">D1.5.9-12</div>
+                        <div class="standard-description">Determine the kinds of sources that will be helpful in answering compelling and supporting questions, taking into consideration multiple points of view.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students determine that direct experimentation (primary source experience) combined with systematic documentation provides evidence needed to answer questions about AI learning.</div>
+                    </div>
+
+                    <h3>Dimension 3: Evaluating Sources and Using Evidence</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">D3.1.9-12</div>
+                        <div class="standard-description">Gather relevant information from multiple sources while using the origin, authority, structure, and context of sources to guide selection.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students gather information from multiple "sources" (six different learning stages), considering the context of each stage to understand what it reveals about learning processes.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">D3.2.9-12</div>
+                        <div class="standard-description">Evaluate the credibility of a source by examining how experts value the source.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students evaluate AI outputs for quality and credibility at each stage, determining which stages produce more/less reliable results.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">D3.3.9-12</div>
+                        <div class="standard-description">Identify evidence that draws information from multiple sources to detect inconsistencies in evidence in order to revise or strengthen claims.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Comparing outputs across six stages helps students detect patterns and inconsistencies, strengthening their understanding of what changes (and what doesn't) during learning.</div>
+                    </div>
+
+                    <h3>Dimension 4: Communicating Conclusions and Taking Informed Action</h3>
+                    
+                    <div class="standard-item">
+                        <div class="standard-code">D4.1.9-12</div>
+                        <div class="standard-description">Construct arguments using precise and knowledgeable claims, with evidence from multiple sources.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation prepares students to construct arguments (in Lesson 2.4) about how AI learns, supported by evidence from all six experimental stages.</div>
+                    </div>
+
+                    <div class="standard-item">
+                        <div class="standard-code">D4.6.9-12</div>
+                        <div class="standard-description">Use disciplinary and interdisciplinary lenses to understand the characteristics and causes of local, regional, and global problems.</div>
+                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Understanding how AI learns provides foundation for analyzing global problems: Is AI ready for high-stakes decisions? What training is needed? Where might deployment be premature?</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- End content -->
+    </div><!-- End container -->
+
+    <script>
+        function showStandards(value) {
+            // Hide all standards content
+            const allContent = document.querySelectorAll('.standards-content');
+            allContent.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Show selected standards
+            if (value) {
+                const selectedContent = document.getElementById(value);
+                if (selectedContent) {
+                    selectedContent.classList.add('active');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
