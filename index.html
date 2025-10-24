@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 2.3 Standards Alignment - Understanding AI</title>
+    <title>Lesson 2.2: The AI Way - Learning by Example - State Standards Alignment</title>
     <style>
         * {
             margin: 0;
@@ -14,199 +14,166 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            background-color: #f5f5f5;
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
             background: white;
-            min-height: 100vh;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
         }
 
         .header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.2em;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .header .subtitle {
-            font-size: 1.1em;
-            opacity: 0.95;
-            margin-bottom: 5px;
-        }
-
-        .header .lesson-info {
-            font-size: 0.95em;
+        .header p {
+            font-size: 1.1rem;
             opacity: 0.9;
-            font-style: italic;
+        }
+
+        .lesson-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        .lesson-info div {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 12px;
+            border-radius: 5px;
         }
 
         .content {
             padding: 30px;
         }
 
-        .intro {
+        .selector-section {
             background: #e8f4f8;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #2196F3;
+            padding: 25px;
+            border-radius: 10px;
             margin-bottom: 30px;
-        }
-
-        .standards-selector {
-            margin-bottom: 30px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .standards-selector label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #667eea;
-            font-size: 1.1em;
-        }
-
-        .standards-selector select {
-            width: 100%;
-            padding: 12px;
-            font-size: 1em;
             border: 2px solid #667eea;
-            border-radius: 5px;
+        }
+
+        .selector-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .state-selector {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
             background: white;
             cursor: pointer;
-            transition: border-color 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .standards-selector select:hover {
-            border-color: #764ba2;
-        }
-
-        .standards-selector select:focus {
+        .state-selector:focus {
             outline: none;
-            border-color: #764ba2;
-            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
         }
 
-        .standards-content {
+        .standards-display {
             display: none;
-            animation: fadeIn 0.3s;
-        }
-
-        .standards-content.active {
-            display: block;
+            animation: fadeIn 0.5s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .standard-section {
-            background: white;
-            padding: 25px;
+        .standards-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
             margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid #667eea;
         }
 
-        .standard-section h2 {
+        .standards-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .standards-section {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .standards-section h3 {
             color: #667eea;
+            font-size: 1.3rem;
             margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .standard-section h3 {
-            color: #764ba2;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.2em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
         }
 
         .standard-item {
-            background: #f9f9f9;
-            padding: 15px;
+            background: white;
             margin: 10px 0;
-            border-radius: 5px;
-            border-left: 3px solid #9c27b0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .standard-code {
-            font-weight: 600;
-            color: #764ba2;
-            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #667eea;
+            font-size: 0.9rem;
         }
 
-        .standard-description {
-            margin-top: 8px;
+        .standard-text {
+            margin-top: 5px;
             color: #555;
         }
 
-        .alignment-note {
+        .lesson-note {
             background: #fff3e0;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 8px;
+            margin-top: 20px;
             border-left: 4px solid #ff9800;
-            margin-top: 15px;
-            font-style: italic;
         }
 
-        .lesson-mapping {
-            background: #e8f5e9;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
+        .lesson-note strong {
+            color: #e65100;
         }
 
-        .lesson-mapping strong {
-            color: #2e7d32;
-        }
-
-        ul {
-            margin: 10px 0;
-            padding-left: 25px;
-        }
-
-        li {
-            margin: 8px 0;
-        }
-
-        .print-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-
-        .print-button:hover {
-            background: #764ba2;
-        }
-
-        @media print {
-            .print-button, .standards-selector {
-                display: none;
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
             }
-            .standards-content {
-                display: block !important;
+            
+            .content {
+                padding: 20px;
             }
         }
     </style>
@@ -214,36 +181,39 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>State Standards Alignment</h1>
-            <div class="subtitle">Understanding AI: A Conceptual Approach</div>
-            <div class="lesson-info">Chapter 2, Lesson 2.3: The Knock-Knock Joke Journey - Part 1</div>
+            <h1>Lesson 2.2: The AI Way - Learning by Example</h1>
+            <p>State Standards Alignment</p>
+            <div class="lesson-info">
+                <div><strong>Type:</strong> Lesson Day</div>
+                <div><strong>Chapter:</strong> 2</div>
+                <div><strong>Duration:</strong> 50 minutes</div>
+            </div>
         </div>
 
-        <button class="print-button" onclick="window.print()">🖨️ Print Standards</button>
-
         <div class="content">
-            <div class="intro">
-                <p><strong>Lesson 2.3</strong> is a Lesson Day where students are introduced to AI learning progression through the narrative of the knock-knock joke journey. Students learn about the six stages of how AI moves from random character generation through increasingly sophisticated pattern recognition to producing coherent jokes. This foundational lesson aligns with multiple state and national standards frameworks through reading comprehension, understanding sequential processes, and building conceptual knowledge about machine learning.</p>
+            <div class="lesson-note">
+                <strong>About This Lesson:</strong> Lesson 2.2 introduces machine learning—how AI discovers patterns from examples without explicit programming. Students learn the revolutionary mechanism behind modern AI and understand both its capabilities and critical limitations including bias in training data.
             </div>
 
-            <div class="standards-selector">
-                <label for="standards-select">Select Standards Framework:</label>
-                <select id="standards-select" onchange="showStandards(this.value)">
-                    <option value="">-- Choose State Standards --</option>
+            <div class="selector-section">
+                <div class="selector-label">Select your state or standards framework:</div>
+                <select id="stateSelector" class="state-selector">
+                    <option value="">Choose your state...</option>
                     <option value="texas">Texas (TEKS)</option>
                     <option value="california">California</option>
                     <option value="florida">Florida</option>
-                    <option value="newyork">New York</option>
+                    <option value="new_york">New York</option>
                     <option value="pennsylvania">Pennsylvania</option>
                     <option value="illinois">Illinois</option>
                     <option value="ohio">Ohio</option>
                     <option value="georgia">Georgia</option>
-                    <option value="northcarolina">North Carolina</option>
+                    <option value="north_carolina">North Carolina</option>
                     <option value="michigan">Michigan</option>
                     <option value="virginia">Virginia</option>
                     <option value="washington">Washington</option>
                     <option value="mississippi">Mississippi</option>
-                    <option value="ccss">Common Core State Standards (CCSS) - ELA</option>
+                    <option value="colorado">Colorado</option>
+                    <option value="ccss_math">Common Core State Standards (CCSS) - Math</option>
                     <option value="ngss">Next Generation Science Standards (NGSS)</option>
                     <option value="iste">ISTE Standards for Students</option>
                     <option value="csta">CSTA K-12 Computer Science Standards</option>
@@ -251,357 +221,575 @@
                 </select>
             </div>
 
-            <!-- Common Core Standards -->
-            <div id="ccss" class="standards-content">
-                <div class="standard-section">
-                    <h2>Common Core State Standards - English Language Arts</h2>
-                    
-                    <div class="alignment-note">
-                        Lesson 2.3 emphasizes systematic documentation, observational writing, and collaborative investigation—core ELA skills applied to understanding technological systems.
-                    </div>
-
-                    <h3>Writing Standards (Grades 9-10)</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.2</div>
-                        <div class="standard-description">Write informative/explanatory texts to examine and convey complex ideas, concepts, and information clearly and accurately through the effective selection, organization, and analysis of content.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation requires students to clearly record observations, organize findings by learning stage, and explain patterns they notice in AI output progression.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.2.A</div>
-                        <div class="standard-description">Introduce a topic; organize complex ideas, concepts, and information to make important connections and distinctions.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students organize observations across six distinct stages, making connections between stages and distinguishing how each stage differs from previous ones.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.2.B</div>
-                        <div class="standard-description">Develop the topic with well-chosen, relevant, and sufficient facts, extended definitions, concrete details, quotations, or other information and examples appropriate to the audience's knowledge of the topic.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Documentation protocol requires specific examples of AI output at each stage, concrete details about observed patterns, and sufficient evidence to support claims about progression.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">CCSS.ELA-LITERACY.W.9-10.7</div>
-                        <div class="standard-description">Conduct short as well as more sustained research projects to answer a question or solve a problem; narrow or broaden the inquiry when appropriate; synthesize multiple sources on the subject, demonstrating understanding of the subject under investigation.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> The lab constitutes a sustained research project investigating "How does AI learn?" Students systematically gather data across multiple experimental trials, synthesizing observations to understand learning progression.</div>
-                    </div>
-
-                    <h3>Speaking and Listening Standards (Grades 9-10)</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">CCSS.ELA-LITERACY.SL.9-10.1</div>
-                        <div class="standard-description">Initiate and participate effectively in a range of collaborative discussions with diverse partners, building on others' ideas and expressing their own clearly and persuasively.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Team-based experimentation requires continuous collaboration as students compare observations, discuss patterns, and build shared understanding of AI learning progression.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">CCSS.ELA-LITERACY.SL.9-10.1.C</div>
-                        <div class="standard-description">Propel conversations by posing and responding to questions that relate the current discussion to broader themes or larger ideas.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> As students observe outputs, they naturally pose questions connecting specific observations to broader concepts about AI learning, pattern recognition, and machine intelligence.</div>
-                    </div>
-
-                    <h3>Reading Standards for Informational Text (Grades 9-10)</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">CCSS.ELA-LITERACY.RI.9-10.7</div>
-                        <div class="standard-description">Analyze various accounts of a subject told in different mediums, determining which details are emphasized in each account.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students analyze AI outputs across six different "accounts" (stages) of the same task, determining which capabilities are emphasized at each learning stage.</div>
-                    </div>
-                </div>
+            <div id="standardsDisplay" class="standards-display">
+                <!-- Standards content will be populated here -->
             </div>
-
-            <!-- NGSS Standards -->
-            <div id="ngss" class="standards-content">
-                <div class="standard-section">
-                    <h2>Next Generation Science Standards (NGSS)</h2>
-                    
-                    <div class="alignment-note">
-                        Lesson 2.3 is fundamentally a scientific investigation, emphasizing authentic science and engineering practices including systematic observation, data collection, pattern analysis, and evidence-based reasoning.
-                    </div>
-
-                    <h3>Science and Engineering Practices</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">Practice 1: Asking Questions and Defining Problems</div>
-                        <div class="standard-description">Ask questions that arise from examining models or a theory to clarify relationships.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> As students observe each stage, they formulate questions about why outputs look the way they do, what's changing between stages, and how the learning process works.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">Practice 3: Planning and Carrying Out Investigations</div>
-                        <div class="standard-description">Plan and conduct an investigation individually and collaboratively to produce data to serve as the basis for evidence.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students follow experimental protocol to systematically investigate AI learning across six stages, collecting data (output examples) that will serve as evidence for tomorrow's analytical discussion.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">Practice 4: Analyzing and Interpreting Data</div>
-                        <div class="standard-description">Analyze data using tools, technologies, and/or models to make valid and reliable scientific claims.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students analyze AI output data across stages, identifying patterns in capability progression and making claims about what changes at each stage.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">Practice 5: Using Mathematics and Computational Thinking</div>
-                        <div class="standard-description">Use mathematical and/or algorithmic representations of phenomena or design solutions to describe relationships.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe computational systems (AI) in action, documenting how algorithmic learning processes produce increasingly sophisticated outputs over time.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">Practice 8: Obtaining, Evaluating, and Communicating Information</div>
-                        <div class="standard-description">Critically read scientific literature to determine the central ideas and obtain scientific information to describe patterns in the natural world.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students obtain information through direct experimentation, evaluate AI outputs for patterns and quality, and communicate findings through field journal documentation.</div>
-                    </div>
-
-                    <h3>Crosscutting Concepts</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">Patterns</div>
-                        <div class="standard-description">Different patterns may be observed at each of the scales at which a system is studied and can provide evidence for causality in explanations of phenomena.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe patterns at multiple scales: letter frequency patterns (Stage 2), word patterns (Stage 3), structural patterns (Stage 5-6), and meta-patterns in how learning itself progresses.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">Systems and System Models</div>
-                        <div class="standard-description">Models can be used to predict the behavior of a system.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students develop mental models of AI learning systems by observing how inputs (prompts) produce systematically different outputs depending on learning stage.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">Stability and Change</div>
-                        <div class="standard-description">Change and rates of change can be quantified and modeled over very short or very long periods of time.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students document how AI capabilities change across learning stages, observing both gradual improvements (Stage 1→2→3) and more dramatic leaps (Stage 4→5).</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ISTE Standards -->
-            <div id="iste" class="standards-content">
-                <div class="standard-section">
-                    <h2>ISTE Standards for Students</h2>
-                    
-                    <div class="alignment-note">
-                        Lesson 2.3 develops hands-on experience with AI systems through systematic experimentation, building both technical understanding and critical evaluation skills.
-                    </div>
-
-                    <h3>1. Empowered Learner</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">1b. Build networks and customize learning environments</div>
-                        <div class="standard-description">Students build networks and customize their learning environments in ways that support the learning process.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students actively experiment with Alia's learning stages, customizing prompts within the experimental framework to explore AI capabilities at their own pace.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">1d. Understand fundamental concepts of technology operations</div>
-                        <div class="standard-description">Students understand the fundamental concepts of technology operations, demonstrate the ability to choose, use and troubleshoot current technologies.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Through direct experimentation, students develop understanding of how AI systems operate—specifically how training affects capability development.</div>
-                    </div>
-
-                    <h3>3. Knowledge Constructor</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">3a. Plan and employ effective research strategies</div>
-                        <div class="standard-description">Students plan and employ effective research strategies to locate information and other resources for their intellectual or creative pursuits.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students follow systematic research protocol (experimental stages, documentation methods) to gather information about AI learning through controlled investigation.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3c. Curate information from digital resources</div>
-                        <div class="standard-description">Students curate information from digital resources using a variety of tools and methods to create collections of artifacts that demonstrate meaningful connections or conclusions.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation requires students to curate AI outputs across six stages, organizing evidence that demonstrates progression and making connections between stages.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3d. Build knowledge by actively exploring real-world issues</div>
-                        <div class="standard-description">Students build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students actively explore the real-world phenomenon of machine learning through hands-on experimentation, developing theories about how AI learns that will be tested in subsequent discussions.</div>
-                    </div>
-
-                    <h3>4. Innovative Designer</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">4a. Know and use a deliberate design process</div>
-                        <div class="standard-description">Students know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students use deliberate experimental design (standardized prompts, systematic documentation, controlled progression) to test theories about AI learning.</div>
-                    </div>
-
-                    <h3>5. Computational Thinker</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">5b. Collect data or identify relevant data sets</div>
-                        <div class="standard-description">Students collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students systematically collect data (AI outputs at each learning stage), document patterns, and organize findings in field journals to support analysis.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">5c. Break problems into component parts</div>
-                        <div class="standard-description">Students break problems into component parts, extract key information, and develop descriptive models to understand complex systems or facilitate problem-solving.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students break the complex process of "AI learning" into six observable stages, examining each component separately to understand the system as a whole.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">5d. Understand how automation works</div>
-                        <div class="standard-description">Students understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe automated learning processes in action, developing understanding of how algorithms improve through pattern recognition without explicit programming.</div>
-                    </div>
-
-                    <h3>7. Global Collaborator</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">7c. Contribute constructively to project teams</div>
-                        <div class="standard-description">Students contribute constructively to project teams, assuming various roles and responsibilities to work effectively toward a common goal.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Team-based lab work requires students to collaborate on experiments, share observations, compare findings, and work toward shared understanding of AI learning.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CSTA Standards -->
-            <div id="csta" class="standards-content">
-                <div class="standard-section">
-                    <h2>CSTA K-12 Computer Science Standards</h2>
-                    
-                    <div class="alignment-note">
-                        Lesson 2.3 provides direct, hands-on experience with machine learning systems—a core computer science concept increasingly central to modern computing.
-                    </div>
-
-                    <h3>Algorithms and Programming</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">3B-AP-08</div>
-                        <div class="standard-description">Describe how artificial intelligence drives many software and physical systems.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students directly observe how AI systems develop capabilities through learning, gaining concrete understanding of the fundamental process that drives all AI applications.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3A-AP-17</div>
-                        <div class="standard-description">Decompose problems into smaller components through systematic analysis.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students decompose "learning to generate jokes" into six observable stages, analyzing each component of the learning process separately.</div>
-                    </div>
-
-                    <h3>Data and Analysis</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">3A-DA-11</div>
-                        <div class="standard-description">Create interactive data visualizations using software tools to help others better understand real-world phenomena.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation creates visual records (documented outputs organized by stage) that help students understand the phenomenon of AI learning progression.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3A-DA-12</div>
-                        <div class="standard-description">Create computational models that represent the relationships among different elements of data collected from a phenomenon or process.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students develop mental models showing relationships between training stage, pattern recognition capability, and output quality—all based on collected data.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3B-DA-05</div>
-                        <div class="standard-description">Use data analysis tools and techniques to identify patterns in data representing complex systems.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students use systematic observation (their "tool") to identify patterns in AI output data, analyzing how the complex system of machine learning produces progressive improvement.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3B-DA-06</div>
-                        <div class="standard-description">Select data collection tools and techniques to generate data sets that support a claim or communicate information.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students select specific documentation techniques (recording sample outputs, noting patterns, comparing stages) to generate data sets supporting claims about learning progression.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3B-DA-07</div>
-                        <div class="standard-description">Evaluate the ability of models and simulations to test and support the refinement of hypotheses.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students observe AI models at different learning stages, evaluating how each stage's capabilities support or challenge hypotheses about how learning progresses.</div>
-                    </div>
-
-                    <h3>Impacts of Computing</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">3A-IC-24</div>
-                        <div class="standard-description">Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> By understanding how AI learns (and what it can/cannot do at each stage), students gain foundation for evaluating whether AI is ready for various real-world applications.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">3B-IC-27</div>
-                        <div class="standard-description">Predict how computational innovations that have revolutionized aspects of our culture might evolve.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Understanding learning progression helps students predict how AI capabilities might evolve: what comes after mastering simple jokes? What other tasks might follow similar learning trajectories?</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- C3 Framework -->
-            <div id="c3" class="standards-content">
-                <div class="standard-section">
-                    <h2>C3 Framework for Social Studies State Standards</h2>
-                    
-                    <div class="alignment-note">
-                        Lesson 2.3's systematic investigation methodology aligns with C3's inquiry arc, particularly in developing questions, gathering evidence through investigation, and preparing for evidence-based communication.
-                    </div>
-
-                    <h3>Dimension 1: Developing Questions and Planning Inquiries</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">D1.1.9-12</div>
-                        <div class="standard-description">Explain how a question represents key ideas in the field.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> The driving question "How does AI learn?" represents key ideas in computer science, technology literacy, and understanding of automated systems increasingly central to social studies.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">D1.5.9-12</div>
-                        <div class="standard-description">Determine the kinds of sources that will be helpful in answering compelling and supporting questions, taking into consideration multiple points of view.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students determine that direct experimentation (primary source experience) combined with systematic documentation provides evidence needed to answer questions about AI learning.</div>
-                    </div>
-
-                    <h3>Dimension 3: Evaluating Sources and Using Evidence</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">D3.1.9-12</div>
-                        <div class="standard-description">Gather relevant information from multiple sources while using the origin, authority, structure, and context of sources to guide selection.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students gather information from multiple "sources" (six different learning stages), considering the context of each stage to understand what it reveals about learning processes.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">D3.2.9-12</div>
-                        <div class="standard-description">Evaluate the credibility of a source by examining how experts value the source.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Students evaluate AI outputs for quality and credibility at each stage, determining which stages produce more/less reliable results.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">D3.3.9-12</div>
-                        <div class="standard-description">Identify evidence that draws information from multiple sources to detect inconsistencies in evidence in order to revise or strengthen claims.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Comparing outputs across six stages helps students detect patterns and inconsistencies, strengthening their understanding of what changes (and what doesn't) during learning.</div>
-                    </div>
-
-                    <h3>Dimension 4: Communicating Conclusions and Taking Informed Action</h3>
-                    
-                    <div class="standard-item">
-                        <div class="standard-code">D4.1.9-12</div>
-                        <div class="standard-description">Construct arguments using precise and knowledgeable claims, with evidence from multiple sources.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Field journal documentation prepares students to construct arguments (in Lesson 2.4) about how AI learns, supported by evidence from all six experimental stages.</div>
-                    </div>
-
-                    <div class="standard-item">
-                        <div class="standard-code">D4.6.9-12</div>
-                        <div class="standard-description">Use disciplinary and interdisciplinary lenses to understand the characteristics and causes of local, regional, and global problems.</div>
-                        <div class="lesson-mapping"><strong>Lesson 2.3 Alignment:</strong> Understanding how AI learns provides foundation for analyzing global problems: Is AI ready for high-stakes decisions? What training is needed? Where might deployment be premature?</div>
-                    </div>
-                </div>
-            </div>
-
-        </div><!-- End content -->
-    </div><!-- End container -->
+        </div>
+    </div>
 
     <script>
-        function showStandards(value) {
-            // Hide all standards content
-            const allContent = document.querySelectorAll('.standards-content');
-            allContent.forEach(content => {
-                content.classList.remove('active');
-            });
-
-            // Show selected standards
-            if (value) {
-                const selectedContent = document.getElementById(value);
-                if (selectedContent) {
-                    selectedContent.classList.add('active');
+        const standardsData = {
+            texas: {
+                title: "Texas Essential Knowledge and Skills (TEKS)",
+                sections: {
+                    "Technology Applications": [
+                        {
+                            code: "§112.34(c)(1)(E)",
+                            text: "Identify, understand, and use appropriate digital learning terminology."
+                        },
+                        {
+                            code: "§112.34(c)(3)(A)",
+                            text: "Evaluate the appropriateness of different tools for completing a task."
+                        },
+                        {
+                            code: "§112.34(c)(6)(A)",
+                            text: "Identify the steps required to complete a task and create algorithms."
+                        }
+                    ],
+                    "Social Studies Skills": [
+                        {
+                            code: "§113.41(c)(1)(B)",
+                            text: "Analyze and evaluate the validity of information, arguments, and counterarguments from primary and secondary sources for bias, propaganda, point of view, and frame of reference."
+                        },
+                        {
+                            code: "§113.41(c)(21)(A)",
+                            text: "Explain the roles of science and technology in contemporary society."
+                        }
+                    ]
+                }
+            },
+            california: {
+                title: "California Computer Science Standards",
+                sections: {
+                    "Algorithms and Programming": [
+                        {
+                            code: "6-8.AP.2",
+                            text: "Evaluate and refine computational artifacts with the goal of making them more inclusive and accessible."
+                        },
+                        {
+                            code: "9-12.AP.3",
+                            text: "Explain how artificial intelligence works and demonstrate its societal and economic impact."
+                        }
+                    ],
+                    "Data and Analysis": [
+                        {
+                            code: "9-12.DA.1",
+                            text: "Explain how data can be organized, interpreted, and used to construct new knowledge."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "9-12.IC.2",
+                            text: "Evaluate the ways that computing impacts personal, ethical, social, and economic practices."
+                        }
+                    ]
+                }
+            },
+            florida: {
+                title: "Florida Computer Science Standards",
+                sections: {
+                    "Computer Science": [
+                        {
+                            code: "SC.912.CS-CS.3.2",
+                            text: "Explain how different types of data are processed and stored."
+                        },
+                        {
+                            code: "SC.912.CS-CP.2.4",
+                            text: "Describe how artificial intelligence algorithms work."
+                        },
+                        {
+                            code: "SC.912.CS-PC.3.1",
+                            text: "Evaluate the beneficial and harmful effects of emerging technologies on society."
+                        }
+                    ]
+                }
+            },
+            new_york: {
+                title: "New York Computer Science and Digital Fluency Standards",
+                sections: {
+                    "Computational Thinking": [
+                        {
+                            code: "9-12.CT.9",
+                            text: "Explain how machine learning and artificial intelligence work."
+                        },
+                        {
+                            code: "9-12.CT.10",
+                            text: "Discuss the ethical, social, and economic implications of artificial intelligence."
+                        }
+                    ],
+                    "Digital Literacy": [
+                        {
+                            code: "9-12.DL.2",
+                            text: "Evaluate the validity and credibility of digital content."
+                        }
+                    ]
+                }
+            },
+            pennsylvania: {
+                title: "Pennsylvania Computer Science Standards",
+                sections: {
+                    "Data and Analysis": [
+                        {
+                            code: "15.4.8-12.D",
+                            text: "Use and interpret data to solve problems and make informed decisions."
+                        }
+                    ],
+                    "Algorithms and Programming": [
+                        {
+                            code: "15.4.8-12.E",
+                            text: "Demonstrate how algorithms make use of iteration and selection to solve problems."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "15.4.8-12.G",
+                            text: "Evaluate the social and ethical ramifications of computing technologies."
+                        }
+                    ]
+                }
+            },
+            illinois: {
+                title: "Illinois Computer Science Standards",
+                sections: {
+                    "Data and Analysis": [
+                        {
+                            code: "9-12.DA.7",
+                            text: "Evaluate the ability of models and simulations to formulate, refine, and test hypotheses."
+                        }
+                    ],
+                    "Algorithms and Programming": [
+                        {
+                            code: "9-12.AP.17",
+                            text: "Describe how artificial intelligence drives many software and physical systems."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "9-12.IC.25",
+                            text: "Evaluate computational artifacts with regard to improving their beneficial effects and reducing harmful effects on different groups of users."
+                        }
+                    ]
+                }
+            },
+            ohio: {
+                title: "Ohio Computer Science Standards",
+                sections: {
+                    "Algorithms and Programming": [
+                        {
+                            code: "ATP.M.9-10.1",
+                            text: "Use data and information to make informed decisions about computational artifacts and solving problems."
+                        }
+                    ],
+                    "Artificial Intelligence": [
+                        {
+                            code: "AI.A.9-12.2",
+                            text: "Explain how artificial intelligence uses data to make predictions."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "IC.SI.9-10.1",
+                            text: "Analyze the beneficial and harmful effects of bias in computing innovations."
+                        }
+                    ]
+                }
+            },
+            georgia: {
+                title: "Georgia Computer Science Standards",
+                sections: {
+                    "Computer Science": [
+                        {
+                            code: "CS-IT-1.11",
+                            text: "Explain how artificial intelligence and machine learning are used in computing."
+                        },
+                        {
+                            code: "CS-IT-1.12",
+                            text: "Analyze how data is used to make decisions in everyday applications."
+                        }
+                    ],
+                    "Social Studies": [
+                        {
+                            code: "SSCG24",
+                            text: "Analyze the impact of technology on Georgia, the United States, and the world."
+                        }
+                    ]
+                }
+            },
+            north_carolina: {
+                title: "North Carolina Computer Science Standards",
+                sections: {
+                    "Data and Analysis": [
+                        {
+                            code: "B1.DA.9",
+                            text: "Explain how data can be used to make predictions and decisions."
+                        }
+                    ],
+                    "Artificial Intelligence": [
+                        {
+                            code: "B1.AI.1",
+                            text: "Describe how artificial intelligence uses data to solve problems."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "B1.IC.20",
+                            text: "Explain the beneficial and harmful effects of computing innovations on society."
+                        }
+                    ]
+                }
+            },
+            michigan: {
+                title: "Michigan Computer Science Standards",
+                sections: {
+                    "Data and Analysis": [
+                        {
+                            code: "9-12.DA.IM.1",
+                            text: "Evaluate the tradeoffs in how data is organized and stored."
+                        }
+                    ],
+                    "Artificial Intelligence": [
+                        {
+                            code: "9-12.AI.A.1",
+                            text: "Explain how artificial intelligence systems learn from data."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "9-12.IC.SI.2",
+                            text: "Analyze the impact and effect of bias and equity deficits in computing systems."
+                        }
+                    ]
+                }
+            },
+            virginia: {
+                title: "Virginia Computer Science Standards",
+                sections: {
+                    "Machine Learning": [
+                        {
+                            code: "CS.9-12.15",
+                            text: "Explain how machine learning systems work and are applied in the real world."
+                        },
+                        {
+                            code: "CS.9-12.18",
+                            text: "Evaluate how computing impacts personal, ethical, social, and economic practices."
+                        }
+                    ],
+                    "Problem Solving": [
+                        {
+                            code: "CS.6-8.13",
+                            text: "Compare and contrast various problem-solving approaches."
+                        }
+                    ]
+                }
+            },
+            washington: {
+                title: "Washington Computer Science K-12 Learning Standards",
+                sections: {
+                    "Artificial Intelligence": [
+                        {
+                            code: "9-12.AI.A.01",
+                            text: "Describe how machine learning systems use data to learn patterns."
+                        },
+                        {
+                            code: "9-12.AI.A.02",
+                            text: "Explain how the quality and diversity of data affect machine learning outcomes."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "9-12.IC.SI.01",
+                            text: "Evaluate computational artifacts with regard to improving their beneficial effects and reducing harmful effects on different groups."
+                        }
+                    ]
+                }
+            },
+            mississippi: {
+                title: "Mississippi College and Career Readiness Standards",
+                sections: {
+                    "Computer Science": [
+                        {
+                            code: "CS.9-12.1",
+                            text: "Analyze the impact of computing on society, including economic, social, ethical, and legal aspects."
+                        },
+                        {
+                            code: "CS.9-12.4",
+                            text: "Describe how computational thinking concepts are applied to solving problems."
+                        },
+                        {
+                            code: "CS.9-12.7",
+                            text: "Explain how artificial intelligence and machine learning algorithms work."
+                        },
+                        {
+                            code: "CS.9-12.11",
+                            text: "Evaluate the impact of bias in computing systems and algorithms."
+                        }
+                    ],
+                    "English Language Arts": [
+                        {
+                            code: "ELA.11-12.RI.3",
+                            text: "Analyze a complex set of ideas or sequence of events and explain how specific individuals, ideas, or events interact and develop."
+                        }
+                    ]
+                }
+            },
+            colorado: {
+                title: "Colorado Computer Science Standards",
+                sections: {
+                    "Artificial Intelligence": [
+                        {
+                            code: "HS.AI.1",
+                            text: "Explain how machine learning systems learn patterns from data."
+                        },
+                        {
+                            code: "HS.AI.2",
+                            text: "Analyze how training data affects machine learning model performance."
+                        }
+                    ],
+                    "Data and Analysis": [
+                        {
+                            code: "HS.DA.1",
+                            text: "Evaluate how data collection and analysis can be used to solve problems."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "HS.IC.1",
+                            text: "Evaluate the impact of computing on personal, economic, and social life."
+                        },
+                        {
+                            code: "HS.IC.2",
+                            text: "Analyze issues of bias and equity in computing systems."
+                        }
+                    ]
+                }
+            },
+            ccss_math: {
+                title: "Common Core State Standards - Mathematics",
+                sections: {
+                    "Standards for Mathematical Practice": [
+                        {
+                            code: "MP.1",
+                            text: "Make sense of problems and persevere in solving them. Students analyze givens, constraints, relationships, and goals when solving problems."
+                        },
+                        {
+                            code: "MP.2",
+                            text: "Reason abstractly and quantitatively. Students make sense of quantities and their relationships in problem situations."
+                        },
+                        {
+                            code: "MP.3",
+                            text: "Construct viable arguments and critique the reasoning of others. Students justify their conclusions and respond to the arguments of others."
+                        },
+                        {
+                            code: "MP.4",
+                            text: "Model with mathematics. Students apply mathematics to solve problems arising in everyday life, society, and the workplace."
+                        }
+                    ],
+                    "Statistics and Probability": [
+                        {
+                            code: "S-IC.1",
+                            text: "Understand statistics as a process for making inferences about population parameters based on a random sample from that population."
+                        }
+                    ]
+                }
+            },
+            ngss: {
+                title: "Next Generation Science Standards (NGSS)",
+                sections: {
+                    "Science and Engineering Practices": [
+                        {
+                            code: "Developing and Using Models",
+                            text: "Students develop, use, and revise models to describe, test, and predict phenomena. Machine learning models demonstrate how systems learn patterns to make predictions."
+                        },
+                        {
+                            code: "Analyzing and Interpreting Data",
+                            text: "Students analyze data to make sense of phenomena. Machine learning demonstrates how large datasets reveal patterns invisible to human analysis."
+                        },
+                        {
+                            code: "Using Mathematics and Computational Thinking",
+                            text: "Students use computational thinking to analyze systems. Understanding how AI learns from data builds foundational computational literacy."
+                        },
+                        {
+                            code: "Obtaining, Evaluating, and Communicating Information",
+                            text: "Students critically evaluate information sources. Understanding AI training data bias develops skills to evaluate algorithmic information sources."
+                        }
+                    ],
+                    "Crosscutting Concepts": [
+                        {
+                            code: "Patterns",
+                            text: "Students recognize patterns in data and use them to make predictions. Machine learning is fundamentally about discovering and applying patterns."
+                        },
+                        {
+                            code: "Cause and Effect",
+                            text: "Students identify causal relationships. Understanding how training data causes AI behavior helps students analyze technological systems."
+                        }
+                    ]
+                }
+            },
+            iste: {
+                title: "ISTE Standards for Students",
+                sections: {
+                    "1. Empowered Learner": [
+                        {
+                            code: "1.d",
+                            text: "Students understand the fundamental concepts of technology operations, demonstrate the ability to choose, use and troubleshoot current technologies."
+                        }
+                    ],
+                    "3. Knowledge Constructor": [
+                        {
+                            code: "3.b",
+                            text: "Students evaluate the accuracy, perspective, credibility and relevance of information, media, data or other resources."
+                        },
+                        {
+                            code: "3.d",
+                            text: "Students build knowledge by actively exploring real-world issues and problems, developing ideas and theories and pursuing answers and solutions."
+                        }
+                    ],
+                    "4. Innovative Designer": [
+                        {
+                            code: "4.a",
+                            text: "Students know and use a deliberate design process for generating ideas, testing theories, creating innovative artifacts or solving authentic problems."
+                        }
+                    ],
+                    "5. Computational Thinker": [
+                        {
+                            code: "5.b",
+                            text: "Students collect data or identify relevant data sets, use digital tools to analyze them, and represent data in various ways to facilitate problem-solving and decision-making."
+                        },
+                        {
+                            code: "5.d",
+                            text: "Students understand how automation works and use algorithmic thinking to develop a sequence of steps to create and test automated solutions."
+                        }
+                    ],
+                    "7. Global Collaborator": [
+                        {
+                            code: "7.b",
+                            text: "Students use collaborative technologies to work with others to examine issues and problems from multiple viewpoints."
+                        }
+                    ]
+                }
+            },
+            csta: {
+                title: "CSTA K-12 Computer Science Standards",
+                sections: {
+                    "Data and Analysis": [
+                        {
+                            code: "3A-DA-12",
+                            text: "Create computational models that represent the relationships among different elements of data collected from a phenomenon or process."
+                        }
+                    ],
+                    "Algorithms and Programming": [
+                        {
+                            code: "3A-AP-13",
+                            text: "Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests."
+                        }
+                    ],
+                    "Impacts of Computing": [
+                        {
+                            code: "3A-IC-24",
+                            text: "Evaluate the ways computing impacts personal, ethical, social, economic, and cultural practices."
+                        },
+                        {
+                            code: "3B-IC-25",
+                            text: "Evaluate computational artifacts to maximize their beneficial effects and minimize harmful effects on society."
+                        },
+                        {
+                            code: "3B-IC-26",
+                            text: "Evaluate the impact of equity, access, and influence on the distribution of computing resources in a global society."
+                        }
+                    ],
+                    "Artificial Intelligence": [
+                        {
+                            code: "3B-AI-01",
+                            text: "Explain the capabilities and limitations of current artificial intelligence technologies."
+                        },
+                        {
+                            code: "3B-AI-02",
+                            text: "Describe how machine learning algorithms are trained on data to make predictions or decisions."
+                        }
+                    ]
+                }
+            },
+            c3: {
+                title: "C3 Framework - College, Career, and Civic Life",
+                sections: {
+                    "Dimension 2 - Economics": [
+                        {
+                            code: "D2.Eco.1.9-12",
+                            text: "Analyze how incentives influence choices that may result in policies with a range of costs and benefits for different groups."
+                        },
+                        {
+                            code: "D2.Eco.14.9-12",
+                            text: "Analyze how technological innovations have affected economic decision-making and behaviors."
+                        }
+                    ],
+                    "Dimension 2 - Civics": [
+                        {
+                            code: "D2.Civ.14.9-12",
+                            text: "Analyze historical, contemporary, and emerging means of changing societies, promoting the common good, and protecting rights."
+                        }
+                    ],
+                    "Dimension 3 - Evaluating Sources and Using Evidence": [
+                        {
+                            code: "D3.1.9-12",
+                            text: "Gather relevant information from multiple sources representing a wide range of views while using the origin, authority, structure, context, and corroborative value of sources to guide the selection."
+                        },
+                        {
+                            code: "D3.3.9-12",
+                            text: "Identify evidence that draws information directly and substantively from multiple sources to detect inconsistencies and contradictions."
+                        }
+                    ],
+                    "Dimension 4 - Communicating Conclusions": [
+                        {
+                            code: "D4.1.9-12",
+                            text: "Construct arguments using precise and knowledgeable claims, with evidence from multiple sources, while acknowledging counterclaims and evidentiary weaknesses."
+                        }
+                    ]
                 }
             }
+        };
+
+        document.getElementById('stateSelector').addEventListener('change', function() {
+            const selectedState = this.value;
+            const displayDiv = document.getElementById('standardsDisplay');
+            
+            if (selectedState && standardsData[selectedState]) {
+                displayStandards(selectedState);
+                displayDiv.style.display = 'block';
+            } else {
+                displayDiv.style.display = 'none';
+            }
+        });
+
+        function displayStandards(state) {
+            const data = standardsData[state];
+            const displayDiv = document.getElementById('standardsDisplay');
+            
+            let html = `
+                <div class="standards-header">
+                    <h2>${data.title}</h2>
+                    <p>Standards addressed in Lesson 2.2</p>
+                </div>
+            `;
+            
+            for (const [sectionName, standards] of Object.entries(data.sections)) {
+                html += `
+                    <div class="standards-section">
+                        <h3>${sectionName}</h3>
+                `;
+                
+                standards.forEach(standard => {
+                    html += `
+                        <div class="standard-item">
+                            <div class="standard-code">${standard.code}</div>
+                            <div class="standard-text">${standard.text}</div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            }
+            
+            displayDiv.innerHTML = html;
         }
     </script>
 </body>
